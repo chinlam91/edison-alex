@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.2",
+    "geckodriver": "^1.6.1",
     "selenium-webdriver": "^3.3.0"
   }
 }

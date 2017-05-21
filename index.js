@@ -4,12 +4,12 @@ let webdriver = require('selenium-webdriver')
 let By = webdriver.By
 let until = webdriver.until
 
-let credentials = {
-  username: 'arkyria',
-  password: new Buffer('ZGFya3NsYXllcg==', 'base64').toString('ascii')
+const credentials = {
+  username: 'momo.ootd',
+  password: new Buffer('YWxleGVkaXNvbg==', 'base64').toString('ascii')
 }
 
-let merchants = ['arkyria']
+const merchants = ['momo.ootd']
 
 let driver = new webdriver.Builder().forBrowser('firefox').build()
 function login() {
@@ -34,7 +34,7 @@ function scanFollowers() {
         counter--
         scanFollowers()
       }
-    }, 500)
+    }, 1000)
   })
 }
 
