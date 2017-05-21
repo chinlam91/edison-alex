@@ -1,27 +1,36 @@
-let express = require('express')
-let app = express()
-let webdriver = require('selenium-webdriver')
-let By = webdriver.By
-let until = webdriver.until
+const express = require('express')
+const app = express()
+const fs = require('fs')
+const webdriver = require('selenium-webdriver')
+const By = webdriver.By
+const until = webdriver.until
+const driver = new webdriver.Builder().forBrowser('firefox').build()
 
+// Merchant list
+const merchantData = {
+  file: './data-list.txt',
+  splitBy: /\r?\n/
+}
+
+// User account
 const credentials = {
   username: 'momo.ootd',
   password: new Buffer('YWxleGVkaXNvbg==', 'base64').toString('ascii')
 }
 
-const merchants = ['momo.ootd']
+const merchants = fs.readFileSync(merchantData.file, 'utf8').split(merchantData.splitBy)
 
-let driver = new webdriver.Builder().forBrowser('firefox').build()
 function login() {
   driver.get('http://www.instagram.com/')
-  let loginButton = driver.wait(until.elementLocated(By.css('._fcn8k')), 10000)
+  const loginButton = driver.wait(until.elementLocated(By.css('._fcn8k')), 10000)
   loginButton.click()
-  let usernameInput = driver.wait(until.elementLocated(By.name('username')), 2000)
+  const usernameInput = driver.wait(until.elementLocated(By.name('username')), 2000)
   usernameInput.sendKeys(credentials.username)
   driver.findElement(By.name('password')).sendKeys(credentials.password)
   driver.findElement(By.css('._ah57t._84y62')).click()
   driver.wait(until.elementLocated(By.css('._9x5sw')), 10000)
 }
+
 let counter = 5
 function scanFollowers() {
   
