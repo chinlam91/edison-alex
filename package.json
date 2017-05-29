@@ -11,6 +11,8 @@
   "dependencies": {
     "express": "^4.15.2",
     "geckodriver": "^1.6.1",
+    "lodash": "^4.17.4",
+    "log4js": "^1.1.1",
     "selenium-webdriver": "^3.3.0"
   }
 }

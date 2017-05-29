@@ -1,0 +1,31 @@
+{
+  "account": {
+    "username": "momo.ootd",
+    "password": "alexedison"
+  },
+  "merchantData": {
+    "file": "./data-list.txt",
+    "separator": "\r?\n"
+  },
+  "followerData": {
+    "file": "./followers.txt",
+    "separator": "\r\n"
+  },
+  "app": {
+    "loglevel": "ALL"
+  },
+  "elements": {
+    "loginButton": "._fcn8k",
+    "loginSubmit": "._ah57t._84y62",
+    "afterLogin": "._9x5sw",
+    "followersLink": "a._s53mj",
+    "followersDialog": "_4gt3b",
+    "pageFollowerButton": "._ah57t._84y62._frcv2._rmr7s",
+    
+    "followerRow": "._cx1ua",
+    "followerLine": "_6jvgy",
+    "followerName": "_4zhc5",
+    "followButton": "._ah57t._84y62._i46jh._rmr7s",
+    "requestedButton": "._ah57t._6y2ah._i46jh._rmr7s"
+  }
+}
