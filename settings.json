@@ -1,16 +1,4 @@
 {
-  "account": {
-    "username": "momo.ootd",
-    "password": "alexedison"
-  },
-  "merchantData": {
-    "file": "./data-list.txt",
-    "separator": "\r?\n"
-  },
-  "followerData": {
-    "file": "./followers.txt",
-    "separator": "\r\n"
-  },
   "app": {
     "loglevel": "ALL"
   },
@@ -25,6 +13,8 @@
     "followerRow": "._cx1ua",
     "followerLine": "_6jvgy",
     "followerName": "_4zhc5",
+    "followButtonWindow": "_84y62",
+    "followingButtonWindow": "_6y2ah",
     "followButton": "._ah57t._84y62._i46jh._rmr7s",
     "requestedButton": "._ah57t._6y2ah._i46jh._rmr7s"
   }
