@@ -6,7 +6,10 @@ const settings = require('./settings.json')
 module.exports.default = class IGStorage {
   constructor(merchantFile, followersFile) {
     this.merchantFile = merchantFile
-    this.followersFile = followersFile
+    if ( ! fs.existsSync('./followers/')) {
+      fs.mkdirSync('./followers/')
+    }
+    this.followersFile = `./followers/${followersFile}`
     this.merchantData = fs.readFileSync(merchantFile, 'utf8').split(/\r?\n/)
   }
 
@@ -20,6 +23,15 @@ module.exports.default = class IGStorage {
       return false
     }
     logger.debug(`Saving ${data.length} follower records.`)
-    fs.appendFileSync(this.followersFile, data.join('\r\n')+'\r\n')
+    return fs.appendFileSync(this.followersFile, data.join('\r\n')+'\r\n')
+  }
+
+  uniqFollowers() {
+    const data = _.uniq(fs.readFileSync(this.followersFile).split(/\r?\n/))
+    return fs.writeFileSync(this.followersFile, data.join('\r\n'))
+  }
+
+  cleanFollowers() {
+    return fs.writeFileSync(this.followersFile, '')
   }
 }

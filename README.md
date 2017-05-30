@@ -12,4 +12,4 @@ This workaround only applies on this version (0.16.1). If the author releases a 
 
 ## Run
 
-Run this application using `node index.js` command.
+Run this application using `npm start` command.
