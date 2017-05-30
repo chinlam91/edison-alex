@@ -71,7 +71,7 @@ module.exports.default = class IGDriver {
           throw err.name == 'TimeoutError' ? new TimeoutError('No Popup displayed within timeout limit.') : err
         })
     })
-    .then(() => true)
+    .then(folnames => folnames)
     .catch(err => {
       logger.warn(err.message)
       return false
@@ -92,7 +92,7 @@ module.exports.default = class IGDriver {
         setTimeout(function() {
           followerDialog.scrollTo(0, followerDialog.scrollHeight)
           return resolve()
-        }, 400)
+        }, 200)
       })
       .then(function() {
         return new Promise(function(resolve, reject) {
@@ -114,9 +114,7 @@ module.exports.default = class IGDriver {
         return callback(folnames.join(','))
       })
       .catch(err => {
-        const folnames = Array.from(document.getElementsByClassName(folLine)).reduce((acc, el) => {
-          return ++acc
-        }, 0)
+        const folnames = document.getElementsByClassName(folLine).length
         return callback(folnames)
       })
     },elements.followersDialog,
@@ -125,9 +123,7 @@ module.exports.default = class IGDriver {
       elements.followButtonWindow)
     .then(folNames => {
       if (typeof folNames == 'string') {
-        folNames = folNames.split(',')
-        this.storage.saveFollowers(folNames)
-        return true
+        return folNames
       }
       logger.trace(`Scrolling Down.. Found ${folNames}/${folcount} records.`)
       return this.scanFollowers(merchant, folcount)
@@ -143,7 +139,8 @@ module.exports.default = class IGDriver {
     const that = this
     return Promise.each(this.merchants.map(el => that.scanMerchant(el)), function(val, idx, len) {
       if (val) {
-        logger.info('Finished scanning followers.')
+        logger.info(`Finished scanning followers.`)
+        that.storage.saveFollowers(val.split(','))
       } else {
         logger.info('Aborting followers scan.')
       }
